@@ -228,7 +228,7 @@ def build(ctx):
                 "image": "docker.io/golang:1.20",
                 "pull": "always",
                 "commands": [
-                    "$(find dist/ -executable -type f -iname drone-fork-approval-amd64) --help",
+                    "$(find dist/ -executable -type f -iname drone-fork-approval-linux-amd64) --help",
                 ],
             },
             {
