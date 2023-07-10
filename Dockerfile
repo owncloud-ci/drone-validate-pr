@@ -9,4 +9,16 @@ LABEL org.opencontainers.image.documentation="https://github.com/owncloud-ci/dro
 
 ADD dist/drone-fork-approval /bin/
 
+RUN addgroup -g 1001 -S app && \
+    adduser -S -D -H -u 1001 -s /sbin/nologin -G app -g app app
+
+RUN apk --update add --no-cache ca-certificates && \
+    rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
+
+EXPOSE 3000
+
+USER app
+
 ENTRYPOINT ["/bin/drone-fork-approval"]
+CMD []

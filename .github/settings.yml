@@ -48,7 +48,7 @@ labels:
 
 teams:
   - name: bot
-    permission: admin
+    permission: write
 
 branches:
   - name: main
