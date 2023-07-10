@@ -50,5 +50,5 @@ func isFork(req *validator.Request) bool {
 		logrus.WithFields(logrus.Fields{"source": sourceRepo, "target": targetRepo}).Infof("%s approved", req.Build.Link)
 	}
 
-	return sourceRepo == targetRepo
+	return sourceRepo != targetRepo
 }
