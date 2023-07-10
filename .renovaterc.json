@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>owncloud-ops/renovate-presets:golang"],
+  "packageRules": [
+    {
+      "description": "Disable Docker Compose",
+      "matchManagers": ["docker-compose"],
+      "enabled": false
+    }
+  ]
+}
