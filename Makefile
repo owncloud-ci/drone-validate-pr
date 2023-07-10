@@ -60,7 +60,7 @@ lint: golangci-lint
 
 .PHONY: generate
 generate:
-	GOPRIVATE=gitea.owncloud.services go generate $(GENERATE)
+	go generate $(GENERATE)
 
 
 .PHONY: test
