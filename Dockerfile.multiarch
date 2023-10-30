@@ -34,3 +34,4 @@ EXPOSE 3000
 USER app
 
 ENTRYPOINT ["/bin/drone-fork-approval"]
+CMD []
