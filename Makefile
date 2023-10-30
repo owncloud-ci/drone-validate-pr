@@ -5,7 +5,7 @@ GOLANGCI_LINT_PACKAGE_VERSION := v1.55.1
 
 SHELL := bash
 NAME := drone-fork-approval
-IMPORT := github.com/owncloud/$(NAME)
+IMPORT := github.com/owncloud-ci/$(NAME)
 DIST := dist
 DIST_DIRS := $(DIST)
 
@@ -23,7 +23,7 @@ GENERATE ?=
 XGO_PACKAGE ?= src.techknowlogick.com/xgo@latest
 GOTESTSUM_PACKAGE ?= gotest.tools/gotestsum@latest
 XGO_VERSION := go-1.21.x
-XGO_TARGETS ?= linux/amd64
+XGO_TARGETS ?= linux/amd64,linux/arm64
 
 TAGS ?= netgo
 
@@ -39,10 +39,10 @@ ifndef DATE
 	DATE := $(shell date -u +"%Y-%m-%dT%H:%M:%S%z")
 endif
 
-LDFLAGS += -s -w -X "$(IMPORT)/pkg/version.String=$(VERSION)" -X "$(IMPORT)/pkg/version.Date=$(DATE)"
+LDFLAGS += -s -w -X "main.BuildVersion=$(VERSION)" -X "main.BuildDate=$(DATE)"
 
 .PHONY: all
-all: clean build
+all: build
 
 .PHONY: clean
 clean:
@@ -62,8 +62,7 @@ lint: golangci-lint
 
 .PHONY: generate
 generate:
-	go generate $(GENERATE)
-
+	$(GO) generate $(GENERATE)
 
 .PHONY: test
 test:
