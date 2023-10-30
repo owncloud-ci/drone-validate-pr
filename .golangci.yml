@@ -97,10 +97,3 @@ linters-settings:
   gofumpt:
     extra-rules: true
     lang-version: "1.21"
-  ireturn:
-    allow:
-      - anon
-      - error
-      - empty
-      - stdlib
-      - github.com/drone/drone-go/plugin/validator.Plugin

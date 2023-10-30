@@ -6,9 +6,9 @@
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-ci/drone-fork-approval)
 [![License: Apache-2.0](https://img.shields.io/github/license/owncloud-ci/drone-fork-approval)](https://github.com/owncloud-ci/drone-fork-approval/blob/main/LICENSE)
 
-Fork approval is a simple Drone CI validation extension that ensures that any PR originating from a fork must be manually approved before it is executed. This extension is a reimplementation of [drone-plugins/drone-docker](https://github.com/wadells/drone-fork-approval-extension).
+Drone CI validation extension to ensures that any PR originating from a fork must be manually approved before it is executed. This extension is a reimplementation of [drone-plugins/drone-docker](https://github.com/wadells/drone-fork-approval-extension).
 
-## Installation
+## Usage
 
 Create a shared secret:
 
@@ -29,11 +29,34 @@ $ docker run -d \
   --name=fork-approval owncloudci/drone-fork-approval
 ```
 
-Update your Drone server configuration to include the plugin address and the shared secret.
+Update the Drone server configuration to include the plugin address and the shared secret.
 
 ```text
 DRONE_VALIDATE_PLUGIN_ENDPOINT=http://127.0.0.1:3000
 DRONE_VALIDATE_PLUGIN_SECRET=bea26a2221fd8090ea38720fc445eca6
+```
+
+## Build
+
+Build the binary with the following command:
+
+```console
+make build
+```
+
+Build the Docker image with the following command:
+
+```console
+docker build --file Dockerfile.multiarch --tag owncloudci/drone-fork-approval .
+```
+
+## Releases
+
+Create and push the new tag to trigger the CI release process:
+
+```console
+git tag v2.10.3
+git push origin v2.10.3
 ```
 
 ## License
@@ -42,6 +65,6 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE](https:
 
 ## Copyright
 
-```Text
+```text
 Copyright (c) 2023 ownCloud GmbH
 ```

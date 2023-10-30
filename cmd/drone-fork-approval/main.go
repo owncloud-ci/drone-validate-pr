@@ -12,13 +12,18 @@ import (
 	"github.com/caarlos0/env/v10"
 	"github.com/drone/drone-go/plugin/validator"
 	"github.com/owncloud-ci/drone-fork-approval/plugin"
-	"github.com/owncloud-ci/drone-fork-approval/version"
 
 	"github.com/sirupsen/logrus"
 )
 
 const (
 	HTTPServerReadHeaderTimeout = 3 * time.Second
+)
+
+//nolint:gochecknoglobals
+var (
+	BuildVersion = "devel"
+	BuildDate    = "00000000"
 )
 
 // spec provides the plugin settings.
@@ -36,8 +41,8 @@ func main() {
 	spec := &spec{
 		Name:         filepath.Base(os.Args[0]),
 		Namespace:    "DRONE_FORK_APPROVAL",
-		BuildVersion: version.String,
-		BuildDate:    version.Date,
+		BuildVersion: BuildVersion,
+		BuildDate:    BuildDate,
 	}
 
 	version := flag.Bool("v", false, "prints version")

@@ -5,7 +5,7 @@ GOLANGCI_LINT_PACKAGE_VERSION := v1.55.1
 
 SHELL := bash
 NAME := drone-fork-approval
-IMPORT := github.com/owncloud/$(NAME)
+IMPORT := github.com/owncloud-ci/$(NAME)
 DIST := dist
 DIST_DIRS := $(DIST)
 
@@ -19,11 +19,11 @@ GOLANGCI_LINT_PACKAGE ?= github.com/golangci/golangci-lint/cmd/golangci-lint@$(G
 XGO_PACKAGE ?= src.techknowlogick.com/xgo@latest
 GOTESTSUM_PACKAGE ?= gotest.tools/gotestsum@latest
 
-GENERATE ?=
+GENERATE ?= $(IMPORT)/pkg/templates
 XGO_PACKAGE ?= src.techknowlogick.com/xgo@latest
 GOTESTSUM_PACKAGE ?= gotest.tools/gotestsum@latest
 XGO_VERSION := go-1.21.x
-XGO_TARGETS ?= linux/amd64
+XGO_TARGETS ?= linux/amd64,linux/arm64
 
 TAGS ?= netgo
 
@@ -39,15 +39,15 @@ ifndef DATE
 	DATE := $(shell date -u +"%Y-%m-%dT%H:%M:%S%z")
 endif
 
-LDFLAGS += -s -w -X "$(IMPORT)/pkg/version.String=$(VERSION)" -X "$(IMPORT)/pkg/version.Date=$(DATE)"
+LDFLAGS += -s -w -X "main.BuildVersion=$(VERSION)" -X "main.BuildDate=$(DATE)"
 
 .PHONY: all
-all: clean build
+all: build
 
 .PHONY: clean
 clean:
 	$(GO) clean -i ./...
-	@rm -rf $(DIST_DIRS)
+	rm -rf $(DIST_DIRS)
 
 .PHONY: fmt
 fmt:
@@ -62,8 +62,7 @@ lint: golangci-lint
 
 .PHONY: generate
 generate:
-	go generate $(GENERATE)
-
+	$(GO) generate $(GENERATE)
 
 .PHONY: test
 test:
@@ -76,7 +75,7 @@ $(DIST)/$(NAME): $(SOURCES)
 	$(GO) build -v -tags '$(TAGS)' -ldflags '-extldflags "-static" $(LDFLAGS)' -o $@ ./cmd/$(NAME)
 
 $(DIST_DIRS):
-	@mkdir -p $(DIST_DIRS)
+	mkdir -p $(DIST_DIRS)
 
 .PHONY: xgo
 xgo: | $(DIST_DIRS)
