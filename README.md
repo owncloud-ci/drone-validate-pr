@@ -1,6 +1,6 @@
 # drone-fork-approval
 
-[![Build Status](https://img.shields.io/drone/build/owncloud-ci/drone-fork-approval?logo=drone&server=https%3A%2F%2Fdrone.owncloud.com)](https://drone.owncloud.com/owncloud-ci/drone-fork-approval)
+[![Build Status](https://drone.owncloud.com/api/badges/owncloud-ci/drone-fork-approval/status.svg)](https://drone.owncloud.com/owncloud-ci/drone-fork-approval)
 [![Docker Hub](https://img.shields.io/docker/v/owncloudci/drone-fork-approval?logo=docker&label=dockerhub&sort=semver&logoColor=white)](https://hub.docker.com/r/owncloudci/drone-fork-approval)
 [![GitHub contributors](https://img.shields.io/github/contributors/owncloud-ci/drone-fork-approval)](https://github.com/owncloud-ci/drone-fork-approval/graphs/contributors)
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-ci/drone-fork-approval)
