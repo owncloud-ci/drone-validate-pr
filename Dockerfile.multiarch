@@ -24,6 +24,7 @@ RUN addgroup -g 1001 -S app && \
     adduser -S -D -H -u 1001 -s /sbin/nologin -G app -g app app
 
 RUN apk --update add --no-cache ca-certificates && \
+    apk upgrade --no-cache libcrypto3 libssl3 && \
     rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
 
