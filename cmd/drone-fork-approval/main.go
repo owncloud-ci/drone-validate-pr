@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/caarlos0/env/v10"
+	"github.com/caarlos0/env/v11"
 	"github.com/drone/drone-go/plugin/validator"
 	"github.com/owncloud-ci/drone-fork-approval/plugin"
 
